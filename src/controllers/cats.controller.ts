@@ -17,8 +17,8 @@ export class CatsController {
   }
 
   @Post('/new')
-  addCat(@Res() res: Response, @Body() createCatDto: CreateCatDto) {
-    const newCat = this.catService.createCat(createCatDto);
+  async addCat(@Res() res: Response, @Body() createCatDto: CreateCatDto) {
+    const newCat = await this.catService.createCat(createCatDto);
     return res.status(HttpStatus.CREATED).json({ cats: newCat });
   }
 }
