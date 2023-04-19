@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Res, HttpStatus, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Res,
+  HttpStatus,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { Response } from 'express';
 
 import { CatService } from 'src/services/cats.service';
@@ -20,5 +28,10 @@ export class CatsController {
   async addCat(@Res() res: Response, @Body() createCatDto: CreateCatDto) {
     const newCat = await this.catService.createCat(createCatDto);
     return res.status(HttpStatus.CREATED).json({ cats: newCat });
+  }
+
+  @Get('/:id')
+  async getCatById(@Res() res: Response, @Param() params: any): Promise<Cats> {
+    return await this.catService.getCatById(params.id);
   }
 }
