@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -17,7 +17,7 @@ export class CatService {
     this.catsRepository.create(createCatDto);
     return await this.catsRepository.save(createCatDto);
   }
-  async getCatById(id) {
+  async getCatById(id: number): Promise<Cats> {
     return await this.catsRepository.findOneBy({ id });
   }
 }

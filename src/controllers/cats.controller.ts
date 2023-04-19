@@ -31,7 +31,15 @@ export class CatsController {
   }
 
   @Get('/:id')
-  async getCatById(@Res() res: Response, @Param() params: any): Promise<Cats> {
-    return await this.catService.getCatById(params.id);
+  async getCatById(
+    @Res() res: Response,
+    @Param() params: any,
+  ): Promise<Response<Cats>> {
+    const cat = await this.catService.getCatById(params.id);
+    if (cat) {
+      return res.json({ cat });
+    } else {
+      return res.status(HttpStatus.NOT_FOUND).json({ error: 'Not found' });
+    }
   }
 }
