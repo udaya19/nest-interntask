@@ -11,8 +11,6 @@ import { Response } from 'express';
 
 import { CatService } from 'src/services/cats.service';
 
-import { Cats } from 'src/entities/cats.entity';
-
 import { CreateCatDto } from 'src/dto/createCatDto.dto';
 
 @Controller('cats')
