@@ -20,8 +20,8 @@ export class CatsController {
   constructor(private readonly catService: CatService) {}
 
   @Get()
-  getHello(): Promise<Cats[]> {
-    return this.catService.getAllCats();
+  async getHello() {
+    return await this.catService.getAllCats();
   }
 
   @Post('/new')
@@ -31,10 +31,7 @@ export class CatsController {
   }
 
   @Get('/:id')
-  async getCatById(
-    @Res() res: Response,
-    @Param() params: any,
-  ): Promise<Response<Cats>> {
+  async getCatById(@Res() res: Response, @Param() params: any) {
     const cat = await this.catService.getCatById(params.id);
     if (cat) {
       return res.json({ cat });
