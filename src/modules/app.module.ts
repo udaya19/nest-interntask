@@ -6,8 +6,10 @@ import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
 
 import { CatsModule } from './cats.module';
+import { UserModule } from './users.module';
 
 import { Cats } from 'src/entities/cats.entity';
+import { User } from 'src/entities/users.entity';
 
 @Module({
   imports: [
@@ -18,10 +20,11 @@ import { Cats } from 'src/entities/cats.entity';
       username: 'postgres',
       password: 'Udaya@2002',
       database: 'nest-crud',
-      entities: [Cats],
+      entities: [Cats, User],
       synchronize: true,
     }),
     CatsModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
