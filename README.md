@@ -58,6 +58,19 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Change postgresql config settings
+
+- Under modules folder go to app.module.ts.
+- Change username and password to your's.
+
+## Testing the API's
+
+This project will run on localhost:3000.
+For registering the user run the following api http://localhost:3000/user/new in postman with POST method. Body of the request is name, email, password, isAdmin: true.
+For login run the following api http://localhost:3000/user/login in postman with POST method. Body of the request is email and password in string format. After succesfull login you will get the jwt token. Copy the token and store it anywhere.
+Now to only admin users can add the cat. Hence to verify user identity jwt token is important.
+To add a cat run the following api http://localhost:3000/cats/new in postman with POST method. Body of request is name(string) and age(number). Also in the headers add Authorization key and Bearer token(jwt token which you copied earlier. Example: Bearer dwjkfnkwqfnknfrenfjerfrjfnrjfnrkffj) as value
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
