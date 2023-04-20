@@ -1,10 +1,22 @@
-import { Body, Controller, Post, Get, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Res,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { Response } from 'express';
 
 import { CreateUserDto } from 'src/dto/createUserDto.dto';
+import { SignInUserDto } from 'src/dto/signInUserDto.dto';
+
 import { User } from 'src/entities/users.entity';
 
 import { UserService } from 'src/services/users.service';
+
+import { AuthGaurd } from '../authGuard/auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -25,5 +37,23 @@ export class UserController {
     } else {
       return res.json({ newUser });
     }
+  }
+  @Post('/login')
+  async login(@Body() signInUser: SignInUserDto, @Res() res: Response) {
+    const user = await this.userService.signInUser(
+      signInUser.email,
+      signInUser.password,
+    );
+    if (user) {
+      return res.json({ user });
+    } else {
+      return res.json({ error: user });
+    }
+  }
+
+  @UseGuards(AuthGaurd)
+  @Get('/profile')
+  async getProfile(@Request() req) {
+    return req.user;
   }
 }
