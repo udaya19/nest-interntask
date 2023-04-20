@@ -65,11 +65,15 @@ $ npm run test:cov
 
 ## Testing the API's
 
-This project will run on localhost:3000.
-For registering the user run the following api http://localhost:3000/user/new in postman with POST method. Body of the request is name, email, password, isAdmin: true.
-For login run the following api http://localhost:3000/user/login in postman with POST method. Body of the request is email and password in string format. After succesfull login you will get the jwt token. Copy the token and store it anywhere.
-Now to only admin users can add the cat. Hence to verify user identity jwt token is important.
-To add a cat run the following api http://localhost:3000/cats/new in postman with POST method. Body of request is name(string) and age(number). Also in the headers add Authorization key and Bearer token(jwt token which you copied earlier. Example: Bearer dwjkfnkwqfnknfrenfjerfrjfnrjfnrkffj) as value
+- This project will run on localhost:3000.
+- For registering the user run the following api http://localhost:3000/user/new in postman with POST method.
+- Body of the request is name, email, password, isAdmin: true.
+- For login run the following api http://localhost:3000/user/login in postman with POST method. Body of the request is email and password in string format.
+- After succesfull login you will get the jwt token. Copy the token and store it anywhere.
+- Now to only admin users can add the cat. Hence to verify user identity jwt token is important.
+- To add a cat run the following api http://localhost:3000/cats/new in postman with POST method.
+- Body of request is name(string) and age(number).
+- Also in the headers add Authorization key and - Bearer token(jwt token which you copied earlier. Example: Bearer dwjkfnkwqfnknfrenfjerfrjfnrjfnrkffj) as value
 
 ## Support
 
